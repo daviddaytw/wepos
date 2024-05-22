@@ -217,13 +217,22 @@
                                         </td>
                                     </tr>
                                     <tr v-if="item.editQuantity" class="update-quantity-wrap">
-                                        <td colspan="5">
+                                        <td colspan="2">
                                             <span class="qty">{{ __( 'Quantity', 'wepos' ) }}</span>
                                             <span class="qty-number"><input type="number" min="1" step="1" v-model="item.quantity"></span>
                                             <span class="qty-action">
                                                 <a href="#" class="add" @click.prevent="addQuantity( item, key )">&#43;</a>
                                                 <a href="#" class="minus" @click.prevent="removeQuantity( item, key )">&#45;</a>
                                             </span>
+                                        </td>
+                                        <td class="price" colspan="3">
+                                            <template v-if="item.on_sale">
+                                                <span class="sale-price">{{ formatPrice( item.sale_price ) }}</span>
+                                                <span class="regular-price">{{ formatPrice( item.regular_price ) }}</span>
+                                            </template>
+                                            <template v-else>
+                                                <span class="sale-price">{{ formatPrice( item.regular_price ) }}</span>
+                                            </template>
                                         </td>
                                     </tr>
                                 </template>
